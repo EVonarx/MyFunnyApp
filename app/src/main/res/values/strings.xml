@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MyFunnyApp </string>
     <string name="radioB1">Man </string>
@@ -8,4 +9,6 @@
     <string name="strMadam">Hello Madam  </string>
     <string name="strSir">Hello  Sir </string>
     <string name="strAgeErrMessage">The age must be an integer </string>
+    <string name="strBack">Back</string>
+    <string name="strHello">Your are beautiful</string>
 </resources>

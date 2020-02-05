@@ -2,9 +2,15 @@ package com.example.FunnyApp.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -58,33 +64,42 @@ public class MainActivity extends AppCompatActivity {
 
     //
     private void listenExecuteButton(){
+
+
         Button clickButton = (Button) findViewById(R.id.buttonExecute);
         clickButton.setOnClickListener( new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                //Toast.makeText(MainActivity.this, "Eric", Toast.LENGTH_SHORT).show();
-                //Log.d("message à moi", "click sur bouton ###############");
-                //
-                //String lenom = txtmonNom.getText().toString();
-                //Integer lage=0;
-                try {
-                    String lenom = myName.getText().toString();
-                    Integer lage = Integer.parseInt(myAge.getText().toString());
-                    Integer sex = 0;
-                    if (mySex.isChecked()){
-                        sex = 1;
-                    }
-                    displayInfos(lenom, sex,lage);
-                }
-                catch(Exception e){
-                    Toast toast = Toast. makeText(getApplicationContext(), R.string.strAgeErrMessage, Toast. LENGTH_SHORT);
-                    TextView MessageToDisplay = (TextView) toast.getView().findViewById(android.R.id.message);
-                    MessageToDisplay.setTextColor(Color.RED);
-                    toast.show();
 
-                }
+                    /**
+                     * Hide the keyboard
+                     */
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+                    try {
+                        String lenom = myName.getText().toString();
+                        Integer lage = Integer.parseInt(myAge.getText().toString());
+                        Integer sex = 0;
+                        if (mySex.isChecked()) {
+                            sex = 1;
+                        }
+                        displayInfos(lenom, sex, lage);
+                        //gotoSecondActivity();
+                        gotoSecondActivityWithTimer();
+
+                    } catch (Exception e) {
+                        Toast toast = Toast.makeText(getApplicationContext(), R.string.strAgeErrMessage, Toast.LENGTH_SHORT);
+                        TextView MessageToDisplay = (TextView) toast.getView().findViewById(android.R.id.message);
+                        MessageToDisplay.setTextColor(Color.RED);
+                        toast.show();
+
+                    }
+
+
+
             }
         });
     }
@@ -108,6 +123,25 @@ public class MainActivity extends AppCompatActivity {
            myImage.setImageResource(R.drawable.imgfemme);
        }
 
+    }
+
+
+    public void  gotoSecondActivity() {
+        Intent intent = new Intent(this, SecondActivity.class);
+        startActivity(intent);
+    }
+
+    public void gotoSecondActivityWithTimer() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // do something
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                // If you just use this that is not a valid context. Use ActivityName.this
+                startActivity(intent);
+            }
+        }, 2000);
     }
 
 }

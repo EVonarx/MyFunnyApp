@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyFunnyApp </string>
+    <string name="radioB1">Homme </string>
+    <string name="radioB2">Femme </string>
+    <string name="name">Entrez votre nom : </string>
+    <string name="age">Entrez votre age : </string>
+    <string name="go"> Executer </string>
+    <string name="strMadam">Bonjour Madame  </string>
+    <string name="strSir">Bonjour  Monsieur </string>
+    <string name="strAgeErrMessage">Votre age doit être un entier </string>
+    <string name="strBack">Retour</string>
+    <string name="strHello">Vous êtes magnifique</string>
+</resources>
